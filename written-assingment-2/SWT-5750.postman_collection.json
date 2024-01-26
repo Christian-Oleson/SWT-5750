@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "9c9907f5-6a0a-4d34-8bba-1a90813e5eea",
+		"name": "SWT-5750",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3613123"
+	},
+	"item": [
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Order/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Order",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Order/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Order",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 3,\r\n    \"customerName\": \"Christian\",\r\n    \"items\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"name\": \"Bacon Cheeseburger\",\r\n            \"price\": 15.0\r\n        }\r\n    ],\r\n    \"totalPrice\": 100.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Order/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Order",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 2,\r\n    \"customerName\": \"Christian\",\r\n    \"items\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"name\": \"Bacon Cheeseburger\",\r\n            \"price\": 15.0\r\n        }\r\n    ],\r\n    \"totalPrice\": 100.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Order/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Order",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderXML",
+			"item": [
+				{
+					"name": "Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/OrderXml/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"OrderXml",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/OrderXml/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"OrderXml",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<foodOrder>\r\n    <orderId>4</orderId>\r\n    <customerName>Christian</customerName>\r\n    <items>\r\n        <items>\r\n            <quantity>1</quantity>\r\n            <name>Bacon Cheeseburger</name>\r\n            <price>15.0</price>\r\n        </items>\r\n        <items>\r\n            <quantity>3</quantity>\r\n            <name>BBQ Bacon Cheeseburger</name>\r\n            <price>45.0</price>\r\n        </items>\r\n    </items>\r\n    <totalPrice>100.5</totalPrice>\r\n</foodOrder>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/OrderXml/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"OrderXml",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 2,\r\n    \"customerName\": \"Christian\",\r\n    \"items\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"name\": \"Bacon Cheeseburger\",\r\n            \"price\": 15.0\r\n        }\r\n    ],\r\n    \"totalPrice\": 100.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Order/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Order",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
