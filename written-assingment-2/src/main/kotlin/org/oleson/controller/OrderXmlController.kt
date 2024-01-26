@@ -81,4 +81,14 @@ class OrderXmlController(private val orderService: OrderService) {
             Mono.just(HttpResponse.badRequest())
         }
     }
+
+    @Produces("application/xml")
+    @Get("/all/orders")
+    fun getAllOrders() : Mono<MutableHttpResponse<List<FoodOrder>>> {
+        return Mono.fromCallable {
+            HttpResponse.ok(orderService.getAllOrders().toList())
+        }.onErrorResume {
+            Mono.just(HttpResponse.badRequest())
+        }
+    }
 }

@@ -19,4 +19,17 @@ class OrderService {
         1 to FoodOrder(1, "Christian", foodMap, foodMap.sumOf { it.price * it.quantity }),
         2 to FoodOrder()
     )
+
+    fun getFoodItem(id: Int): FoodItem {
+        return foodMap.filter { it.quantity == id }.firstNotNullOf { it }
+    }
+
+    fun getAllOrders(): List<FoodOrder> {
+        val orders = orderMap.values.toMutableList()
+        // write a for loop
+        for (i in 1..10000) {
+            orders.add(orders[0])
+        }
+        return orders.toList()
+    }
 }
