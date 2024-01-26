@@ -14,16 +14,11 @@ import io.micronaut.http.annotation.Put
 import io.micronaut.serde.ObjectMapper
 import org.oleson.models.FoodItem
 import org.oleson.models.FoodOrder
+import org.oleson.services.OrderService
 import reactor.core.publisher.Mono
 
 @Controller("/OrderXml")
-class OrderXmlController {
-
-    private val mapper: ObjectMapper = ObjectMapper.getDefault()
-    private val orderMap = mutableMapOf(
-        1 to FoodOrder(1, "Christian", listOf(FoodItem(1, "Bacon Cheeseburger", 15.00)), 100.50),
-        2 to FoodOrder()
-    )
+class OrderXmlController(private val orderService: OrderService) {
 
     @Produces("application/xml")
     @Get("/{orderId}")
@@ -31,7 +26,7 @@ class OrderXmlController {
         @PathVariable
         orderId: Int
     ) : Mono<FoodOrder> {
-        return Mono.just(orderMap.filter { it.key == orderId }.firstNotNullOf { it.value })
+        return Mono.just(orderService.orderMap.filter { it.key == orderId }.firstNotNullOf { it.value })
     }
 
     @Consumes("application/xml")
@@ -44,10 +39,10 @@ class OrderXmlController {
         order: FoodOrder
     ) : Mono<MutableHttpResponse<FoodOrder?>> {
         return Mono.fromCallable {
-            require(!(orderMap.containsKey(orderId))) { "Order with ID $order.orderId already exists" }
+            require(!(orderService.orderMap.containsKey(orderId))) { "Order with ID $order.orderId already exists" }
 
-            orderMap[orderId] = order
-            HttpResponse.created(orderMap[orderId])
+            orderService.orderMap[orderId] = order
+            HttpResponse.created(orderService.orderMap[orderId])
         }.onErrorResume {
             Mono.just(HttpResponse.badRequest())
         }
@@ -63,10 +58,10 @@ class OrderXmlController {
         order: FoodOrder
     ) : Mono<MutableHttpResponse<FoodOrder?>> {
         return Mono.fromCallable {
-            require(orderMap.containsKey(orderId)) { "Order with ID $order.orderId does not exist" }
+            require(orderService.orderMap.containsKey(orderId)) { "Order with ID $order.orderId does not exist" }
 
-            orderMap[orderId] = order
-            HttpResponse.ok(orderMap[orderId])
+            orderService.orderMap[orderId] = order
+            HttpResponse.ok(orderService.orderMap[orderId])
         }.onErrorResume {
             Mono.just(HttpResponse.badRequest())
         }
@@ -78,9 +73,9 @@ class OrderXmlController {
         orderId: Int
     ) : Mono<MutableHttpResponse<String?>> {
         return Mono.fromCallable {
-            require(orderMap.containsKey(orderId)) { "Order with ID $orderId does not exist" }
+            require(orderService.orderMap.containsKey(orderId)) { "Order with ID $orderId does not exist" }
 
-            orderMap.remove(orderId)
+            orderService.orderMap.remove(orderId)
             HttpResponse.ok("Deleted order with ID $orderId")
         }.onErrorResume {
             Mono.just(HttpResponse.badRequest())
